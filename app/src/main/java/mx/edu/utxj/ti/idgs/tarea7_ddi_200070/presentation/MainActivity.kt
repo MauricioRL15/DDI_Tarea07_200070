@@ -33,33 +33,45 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var clockTextView: TextView
+    private lateinit var saludoTextView: TextView
     private lateinit var handler: Handler
     private lateinit var updateTimeRunnable: Runnable
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         clockTextView = findViewById(R.id.clockTextView)
+        saludoTextView = findViewById(R.id.saludo)
+        val calendar = Calendar.getInstance()
+        val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+        val saludo: String = when(hourOfDay) {
+            in 6..11 -> "Buenos días!"
+            in 12..18 -> "Buenas tardes!"
+            else -> "Buenas noches!"
+        }
+        saludoTextView.text = saludo
+
         handler = Handler()
         updateTimeRunnable = object : Runnable {
             override fun run() {
                 val currentTime = Calendar.getInstance().time
-                val dateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
                 val formattedTime = dateFormat.format(currentTime)
                 clockTextView.text = formattedTime
 
-                // Programa la próxima actualización después de 1 segundo
+                // Se actualiza después de 1 segundo
+                saludoTextView.text = saludo
                 handler.postDelayed(this, 1000)
             }
         }
     }
-
     override fun onResume() {
         super.onResume()
         handler.post(updateTimeRunnable)
     }
-
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(updateTimeRunnable)

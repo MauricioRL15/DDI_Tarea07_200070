@@ -4,15 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#FF9800"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/saludo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buenas Tardes"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/clockTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
