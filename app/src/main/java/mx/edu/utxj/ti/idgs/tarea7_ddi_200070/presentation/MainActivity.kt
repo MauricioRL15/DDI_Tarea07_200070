@@ -19,6 +19,7 @@ import com.google.android.gms.location.LocationServices
 //import mx.edu.utxj.ti.idgs.tarea7_ddi_200070.Manifest
 import android.Manifest
 import android.util.Log
+import androidx.compose.ui.graphics.Color
 import mx.edu.utxj.ti.idgs.tarea7_ddi_200070.R
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         clockTextView = findViewById(R.id.clockTextView)
         saludoTextView = findViewById(R.id.saludo)
         temperaturaTextView = findViewById(R.id.temperaturaTextView)
+
 
         val calendar = Calendar.getInstance()
         val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
@@ -87,12 +89,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun obtenerTemperatura() {
-        /*UTXJ*/
-        val latitud = 20.237791
-        val longitud = -97.9601548
-        /* NECAXA
+        /*UTXJ
+        val latitud = 37.4219983333335
+        val longitud = -122.084*/
+        /* NECAXA*/
         val latitud = 20.2075011
-        val longitud = -98.0138047*/
+        val longitud = -98.0138047
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
